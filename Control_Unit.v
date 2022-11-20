@@ -1,19 +1,3 @@
-/*
-
-	File name    : 
-	LastEditors  : H
-	LastEditTime : 2021-10-28 20:59:03
-	Last Version : 1.0
-	Description  : 
-	
-	----------------------------------------------------------------------------------------
-	
-	Author       : H
-	Date         : 2021-10-28 20:59:02
-	FilePath     : \MIPS_Single\Control_Unit.v
-	Copyright 2021 H, All Rights Reserved. 
-
-*/
 module Control_Unit(
     // System Clock
     input        clk,
@@ -57,11 +41,11 @@ always @(*) begin
         // sw Instruction
         6'b101011 : begin
             RegWrite = 1'b0;
-            RegDst   = 1'b0;
+            RegDst   = 1'b0;    // dont care
             ALUSrc   = 1'b1;
             Branch   = 1'b0;
             MemWrite = 1'b1;
-            MemtoReg = 1'b1;
+            MemtoReg = 1'b1;    // dont care
             ALUOp    = 2'b00;
             Jump     = 1'b0;
         end

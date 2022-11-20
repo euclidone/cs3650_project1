@@ -1,19 +1,3 @@
-/*
-
-	File name    : 
-	LastEditors  : H
-	LastEditTime : 2021-10-28 17:09:32
-	Last Version : 1.0
-	Description  : 
-	
-	----------------------------------------------------------------------------------------
-	
-	Author       : H
-	Date         : 2021-10-28 17:09:31
-	FilePath     : \MIPS_Single\Data_Memory.v
-	Copyright 2021 H, All Rights Reserved. 
-
-*/
 module Data_Memory(
     // System Clock
     input        clk,

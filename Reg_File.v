@@ -1,19 +1,3 @@
-/*
-
-	File name    : 
-	LastEditors  : H
-	LastEditTime : 2021-10-28 16:37:57
-	Last Version : 1.0
-	Description  : 
-	
-	----------------------------------------------------------------------------------------
-	
-	Author       : H
-	Date         : 2021-10-28 16:37:55
-	FilePath     : \MIPS_Single\Reg_File.v
-	Copyright 2021 H, All Rights Reserved. 
-
-*/
 module Reg_File (
     input               clk,
     input       [4:0]   A1,
@@ -51,6 +35,7 @@ module Reg_File (
 
     assign RD1 = ROM[A1];
     assign RD2 = ROM[A2];
+    
     // RegWrite is set to 1 when lw Instr is executed
     always @(posedge clk) begin
         if (RegWrite) begin
