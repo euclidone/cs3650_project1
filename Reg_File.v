@@ -1,18 +1,19 @@
 module Reg_File (
     input               clk,
-    input       [4:0]   A1,
-    input       [4:0]   A2,
-    input       [4:0]   A3,
+    input       [4:0]   A1, // Address 1
+    input       [4:0]   A2, // Address 2
+    input       [4:0]   A3, // Address 3
 
-    input               RegWrite,
-    input       [31:0]  WD3,
-    output      [31:0]  RD2,
-    output      [31:0]  RD1
+    input               RegWrite, // Will there be writing in register
+    input       [31:0]  WD3,// Write data in 3
+    output      [31:0]  RD2, // Read data in 2
+    output      [31:0]  RD1 // Read data in 1
 
 );
     // lw : load word instr [op(6bit) rs(5bit) rd(5bit) imm(16bit)]
 
     reg [31:0]  ROM [31:0];
+    // setting every bit of ROM to 0
     initial begin
         ROM[0] <= 32'b0;
         ROM[1] <= 32'b0;
@@ -33,14 +34,14 @@ module Reg_File (
     end
 
 
-    assign RD1 = ROM[A1];
-    assign RD2 = ROM[A2];
+    assign RD1 = ROM[A1]; // Assign RD1 to the data stored in ROM at address 1
+    assign RD2 = ROM[A2]; // Assign RD2 to the data stored in ROM at address 2
     
     // RegWrite is set to 1 when lw Instr is executed
     always @(posedge clk) begin
         if (RegWrite) begin
             // load word
-            ROM[A3] <= WD3;
+            ROM[A3] <= WD3; // Store the data in WD3 into ROM at address 3
         end
     end
 endmodule

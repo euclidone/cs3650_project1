@@ -8,7 +8,8 @@ module Instr_Memory(
 );
 	reg [7:0] Instr_Reg [71:0];
 	initial begin
-		$readmemh("./memfile.dat",Instr_Reg,0,71);
+		$readmemh("./memfile.dat",Instr_Reg,0,71); // Reading the 18 machine codes
+        // in memfile.dat
 	end
     assign RD = {{Instr_Reg[A]},{Instr_Reg[A+32'd1]},{Instr_Reg[A+32'd2]},{Instr_Reg[A+32'd3]}};
 	// ex: add $t0 $s1 $s2 

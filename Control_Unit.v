@@ -5,17 +5,17 @@ module Control_Unit(
 
     // User Interface
     output  reg [1:0]    ALUOp,
-    output  reg     MemWrite,RegWrite,
-    output  reg     RegDst,
-    output  reg     MemtoReg,
+    output  reg     MemWrite,RegWrite, // Will there be writing to memory/register
+    output  reg     RegDst, // Destination register
+    output  reg     MemtoReg, // Will data be passed from memory to register
     output  reg     ALUSrc,
-    output  reg     Branch,
-    output  reg     Jump,
-    input   [5:0]   Opcode
+    output  reg     Branch, // Is there branching involved 
+    output  reg     Jump, // Is there jumping involved 
+    input   [5:0]   Opcode // inputted Opcode to know what operation to conduct
 );
 
 always @(*) begin
-    case (Opcode)
+    case (Opcode) // Switch statement to decide what values to output based on the instruction
         // R type no Immediate Instruction
         6'b000000 : begin
             RegWrite = 1'b1;

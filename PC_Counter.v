@@ -16,19 +16,20 @@ module PC_Counter(
     wire            [31:0] PCJump;
 
 
-    assign PCPlus4  = PC + 32'd4;
-    assign PCBranch = (SignImm << 2) + PCPlus4;
-    assign PCJump   = {{PCPlus4[31:28]},{Jump_low_26Bit},2'b00}; 
-    assign PC_Next  = Jump ? PCJump : (PCSrc ? PCBranch : PCPlus4);
+    assign PCPlus4  = PC + 32'd4; // this gets the Progam counter value + 4
+    assign PCBranch = (SignImm << 2) + PCPlus4; // Value for branching
+    assign PCJump   = {{PCPlus4[31:28]},{Jump_low_26Bit},2'b00}; // Value for jumping 
+    assign PC_Next  = Jump ? PCJump : (PCSrc ? PCBranch : PCPlus4); // Getting the next Program counter value
 
 
 
-    always @(posedge clk) begin
+
+    always @(posedge clk) begin // on positive edges
         if(~rst_n)begin
-            PC <= 32'b0;
+            PC <= 32'b0; // Initialize with a 32-bit width of all 0s
         end
         else 
-            PC <= PC_Next;
+            PC <= PC_Next; // Otherwise just get the next determined PC value
     end
 
 endmodule
