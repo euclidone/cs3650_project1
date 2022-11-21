@@ -16,6 +16,7 @@ module Control_Unit(
 
 always @(*) begin
     case (Opcode) // Switch statement to decide what values to output based on the instruction
+       
         // R type no Immediate Instruction
         6'b000000 : begin
             RegWrite = 1'b1;
@@ -27,6 +28,7 @@ always @(*) begin
             ALUOp    = 2'b10;
             Jump     = 1'b0;
         end
+
         // beq Instruction
         6'b000100 : begin
             RegWrite = 1'b0;
@@ -38,6 +40,7 @@ always @(*) begin
             ALUOp    = 2'b01;
             Jump     = 1'b0;
         end
+
         // sw Instruction
         6'b101011 : begin
             RegWrite = 1'b0;
@@ -49,6 +52,7 @@ always @(*) begin
             ALUOp    = 2'b00;
             Jump     = 1'b0;
         end
+
         // lw Instruction
         6'b100011 : begin
             RegWrite = 1'b1;
@@ -60,6 +64,7 @@ always @(*) begin
             ALUOp    = 2'b00;
             Jump     = 1'b0;
         end
+
         // addi Instruction
         6'b001000 : begin
             RegWrite = 1'b1;
@@ -71,6 +76,7 @@ always @(*) begin
             ALUOp    = 2'b00;
             Jump     = 1'b0;
         end
+
         // J type Instruction
         6'b000010 : begin
             RegWrite = 1'b0;
