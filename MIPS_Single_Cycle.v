@@ -1,3 +1,14 @@
+`timescale 1ps/1ps
+`include "PC_Counter.v"
+`include "Instr_Memory.v"
+`include "Control_Unit.v"
+`include "Reg_File.v"
+`include "Imm_Sign_Extend.v"
+`include "Data_Memory.v"
+`include "ALU_Control_Unit.v"
+`include "ALU.v"
+
+
 module MIPS_Single_Cycle( // Instantiating an instance of a single cycle MIPS implementation 
     // System Clock
     input        clk,   // clock

@@ -1,4 +1,6 @@
 `timescale 1ps/1ps
+`include "MIPS_Single_Cycle.v"
+
 module tb_MIPS_Single_Cycle();
 
 reg clk,rst_n;      // clock and reset
