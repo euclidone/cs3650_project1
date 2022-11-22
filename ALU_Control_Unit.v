@@ -12,7 +12,7 @@ module ALU_Control_Unit(
             2'b00: ALUControl = 3'b010; //instruction: sw, ALU control input: add
             2'b10: begin //instruction: lw, ALU control input: add
                 case (Funct)                        
-                  //funct field        ALU control input
+                    //funct field ALU control input
                     6'b100000 : ALUControl = 3'b010; //add
                     6'b100010 : ALUControl = 3'b110; //subtract
                     6'b100100 : ALUControl = 3'b000; //AND
@@ -22,7 +22,7 @@ module ALU_Control_Unit(
             end
             2'b01: ALUControl = 3'b110; //instruction: beq, ALU control input: subtract
             default: ;
-        endcase
+        endcase 
     end
 
 

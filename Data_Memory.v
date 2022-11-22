@@ -1,14 +1,14 @@
 module Data_Memory(
     // System Clock
-    input        clk,
-    input        rst_n,
+    input        clk,   // clock
+    input        rst_n, // reset
 
     // User Interface
-    input           [31:0]  A, // Write Address A
-    input           [31:0]  WD, // Write data
+    input           [31:0]  A,  // 32 bits Write Address A
+    input           [31:0]  WD, // 32 bits Write data
     input                   WE,
 
-    output   reg    [31:0]  RD // Read data
+    output   reg    [31:0]  RD  // 32 bits Read data
 );
     integer fd;
     reg [31:0]  DATA_MEM[84:0];

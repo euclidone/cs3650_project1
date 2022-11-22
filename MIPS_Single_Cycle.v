@@ -1,37 +1,38 @@
-module MIPS_Single_Cycle( // instantiating an instance of a single cycle MIPS implementation 
+module MIPS_Single_Cycle( // Instantiating an instance of a single cycle MIPS implementation 
     // System Clock
-    input        clk,
-    input        rst_n
+    input        clk,   // clock
+    input        rst_n  // reset
 
     // User Interface
     
 );
-    wire [31:0]     PC;
-    wire [31:0]     Instr,ALUResult;
-    wire [31:0]     ReadData,WriteData;
-    wire [31:0]     SrcA,SrcB;
-    wire            MemWrite,RegWrite;
+    wire [31:0]     PC;                 // 32 bits Program counter
+    wire [31:0]     Instr,ALUResult;    // 32 bits 
+    wire [31:0]     ReadData,WriteData; // 32 bits
+    wire [31:0]     SrcA,SrcB;          // 32 bits
+    wire            MemWrite,RegWrite;  
 
     wire            RegDst,ALUSrc,MemtoReg;
 
-    wire [4:0]      WriteReg;
-    wire [31:0]     SignImm,RD2;
-    wire [31:0]     WD3;
+    wire [4:0]      WriteReg;           // 5 bits 
+    wire [31:0]     SignImm,RD2;        // 32 bits
+    wire [31:0]     WD3;                // 32 bits
 
-    wire            PCSrc,Branch,Zero;
-    wire            Jump;
+    wire            PCSrc,Branch,Zero;  
+    wire            Jump;               
 
-    wire [2:0]      ALUControl;
-    wire [1:0]      ALUOp;
+    wire [2:0]      ALUControl;         // 3 bits
+    wire [1:0]      ALUOp;              // 2 bits
 
 
-    assign PCSrc        = Branch & Zero;
-    assign WriteReg     = RegDst ? Instr[15:11] : Instr[20:16];
-    assign SrcB         = ALUSrc ? SignImm : RD2;
-    assign WD3          = MemtoReg ? ReadData : ALUResult;
+    assign PCSrc        = Branch & Zero;    // AND
+    assign WriteReg     = RegDst ? Instr[15:11] : Instr[20:16]; // Set on
+    assign SrcB         = ALUSrc ? SignImm : RD2;   // Set on
+    assign WD3          = MemtoReg ? ReadData : ALUResult;  // Set on
     assign WriteData    = RD2;
 
-    PC_Counter u_PC_Counter( //instantation of PC_Counter 
+    // Instantation of PC_Counter
+    PC_Counter u_PC_Counter(  
         .clk(clk),
         .rst_n(rst_n),
         .PC(PC),
@@ -41,12 +42,14 @@ module MIPS_Single_Cycle( // instantiating an instance of a single cycle MIPS im
         .SignImm(SignImm)
     );
 
-    Instr_Memory u_Instr_Memory( //instantation of Instr_Memory
+    // Instantation of Instr_Memory
+    Instr_Memory u_Instr_Memory( 
         .RD(Instr),
         .A(PC)
     );
 
-    Control_Unit u_Control_Unit( //instantation of Control_Unit
+    // Instantation of Control_Unit
+    Control_Unit u_Control_Unit( 
         .clk(clk),
         .rst_n(rst_n),
         .Opcode(Instr[31:26]),
@@ -60,7 +63,8 @@ module MIPS_Single_Cycle( // instantiating an instance of a single cycle MIPS im
         .Branch(Branch)
     );
 
-    Reg_File u_Reg_File( //instantation of Reg_File
+    // Instantation of Reg_File
+    Reg_File u_Reg_File( 
         .clk(clk),
         .A1(Instr[25:21]),
         .RD1(SrcA),
@@ -71,12 +75,14 @@ module MIPS_Single_Cycle( // instantiating an instance of a single cycle MIPS im
         .WD3(WD3)
     );
 
-    Imm_Sign_Extend u_Imm_Sign_Extend( //instantation of Imm_Sign_Extend
+    // Instantation of Imm_Sign_Extend
+    Imm_Sign_Extend u_Imm_Sign_Extend( 
         .Immediate(Instr[15:0]),
         .SignImm(SignImm)
     );
 
-    Data_Memory u_Data_Memory( //instantation of Data_Memory
+    // Instantation of Data_Memory
+    Data_Memory u_Data_Memory( 
         .clk(clk),
         .rst_n(rst_n),
 
@@ -86,13 +92,15 @@ module MIPS_Single_Cycle( // instantiating an instance of a single cycle MIPS im
         .WD(WriteData)
     );
 
-    ALU_Control_Unit u_ALU_Control_Unit( //instantation of ALU_Control_Unit
+    // Instantation of ALU_Control_Unit
+    ALU_Control_Unit u_ALU_Control_Unit( 
         .Funct(Instr[5:0]),
         .ALUOp(ALUOp),
         .ALUControl(ALUControl)
     );
 
-    ALU u_ALU( // //instantation of ALU
+    // Instantation of ALU
+    ALU u_ALU( 
         .SrcA(SrcA),
         .SrcB(SrcB),
         .ALUControl(ALUControl),

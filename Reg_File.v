@@ -1,13 +1,13 @@
 module Reg_File (
     input               clk,
-    input       [4:0]   A1, // Address 1
-    input       [4:0]   A2, // Address 2
-    input       [4:0]   A3, // Address 3
+    input       [4:0]   A1, // 5 bits Address 1
+    input       [4:0]   A2, // 5 bits Address 2
+    input       [4:0]   A3, // 5 bits Address 3
 
-    input               RegWrite, // Will there be writing in register
-    input       [31:0]  WD3,// Write data in 3
-    output      [31:0]  RD2, // Read data in 2
-    output      [31:0]  RD1 // Read data in 1
+    input               RegWrite,   // Will there be writing in register
+    input       [31:0]  WD3,        // 32 bits Write data in 3
+    output      [31:0]  RD2,        // 32 bits Read data in 2
+    output      [31:0]  RD1         // 32 bits Read data in 1
 
 );
     // lw : load word instr [op(6bit) rs(5bit) rd(5bit) imm(16bit)]

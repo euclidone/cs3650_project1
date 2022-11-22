@@ -1,7 +1,7 @@
 module Instr_Memory(
     // System Clock
-    input   [31:0]  A, //8 instructions of 5 bits, width of 32 bit
-    output  [31:0]  RD //read data
+    input   [31:0]  A, // 32 bits 8 instructions of 5 bits, width of 32 bit
+    output  [31:0]  RD // 32 bits Read data
 
     // User Interface
     

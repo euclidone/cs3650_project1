@@ -1,17 +1,17 @@
 module Control_Unit(
     // System Clock
-    input        clk,
-    input        rst_n,
+    input        clk,   // clock
+    input        rst_n, // reset
 
     // User Interface
-    output  reg [1:0]    ALUOp,
-    output  reg     MemWrite,RegWrite, // Will there be writing to memory/register
-    output  reg     RegDst, // Destination register
-    output  reg     MemtoReg, // Will data be passed from memory to register
+    output  reg [1:0]    ALUOp,         // 1 bit
+    output  reg     MemWrite,RegWrite,  // Will there be writing to memory/register
+    output  reg     RegDst,             // Destination register
+    output  reg     MemtoReg,           // Will data be passed from memory to register
     output  reg     ALUSrc,
-    output  reg     Branch, // Is there branching involved 
-    output  reg     Jump, // Is there jumping involved 
-    input   [5:0]   Opcode // inputted Opcode to know what operation to conduct
+    output  reg     Branch,             // Is there branching involved 
+    output  reg     Jump,               // Is there jumping involved 
+    input   [5:0]   Opcode              // 5 bits inputted Opcode to know what operation to conduct
 );
 
 always @(*) begin
