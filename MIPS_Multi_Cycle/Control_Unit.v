@@ -7,10 +7,10 @@ module Control_Unit(
 
     input       [5:0]   Opcode,
 
-    output  reg [1:0]   ALUOp,
-    output  reg         MemtoReg,
-    output  reg         RegDst,
-    output  reg         IorD,
+    output  reg [1:0]   ALUOp, // 1 bit for operation
+    output  reg         MemtoReg, // Will data be passed from memory to register
+    output  reg         RegDst, // Destination Register
+    output  reg         IorD, // Instruction or data
     output  reg [1:0]   PCSrc,
     output  reg [1:0]   ALUSrcB,
     output  reg         ALUSrcA,

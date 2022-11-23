@@ -13,7 +13,7 @@ module Reg_File (
     // lw : load word instr [op(6bit) rs(5bit) rd(5bit) imm(16bit)]
 
     reg [31:0]  ROM [31:0];
-    // setting every bit of ROM to 0
+    // Setting indices 0-15 of ROM to 32 bits of 0s
     initial begin
         ROM[0] <= 32'b0;
         ROM[1] <= 32'b0;
