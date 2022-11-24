@@ -1,3 +1,11 @@
+`include "PC_Counter.v"
+`include "Control_Unit.v"
+`include "Reg_File.v"
+`include "Imm_Sign_Extend.v"
+`include "Instr_Data_Memory.v"
+`include "ALU_Control_Unit.v"
+`include "ALU.v"
+
 module MIPS_Multi_Cycle(
     // System Clock
     input               clk,
