@@ -19,12 +19,12 @@
 module tb_MIPS_Pipeline();
 
 reg clk,rst_n;
-reg [31:0] cnt;
+reg [31:0] cnt;     // register is 32 bits
 
 initial
 begin            
-    $dumpfile("MIPS_wave.vcd");        //生成的vcd文件名称
-    $dumpvars(0, tb_MIPS_Pipeline);    //tb模块名称
+    $dumpfile("MIPS_wave.vcd");        // generate a file MIPS_wave.vcd
+    $dumpvars(0, tb_MIPS_Pipeline);    //tb模锟斤拷锟斤拷锟斤拷
 end
 
 initial begin

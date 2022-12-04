@@ -16,25 +16,25 @@
 */
 module ID_EX_Register(
     // System Clock
-    input        clk,
-    input        rst_n,
+    input        clk,               // clock
+    input        rst_n,             // reset
 
     // User Interface
-    input       [31:0]  RD1,
-    input       [31:0]  RD2,
-    input       [4:0]   Rt,
-    input       [4:0]   Rs,
-    input       [4:0]   Rd,
-    input       [31:0]  SignImm,
-    input       [31:0]  PCPlus4D,
+    input       [31:0]  RD1,        // input is 32 bits
+    input       [31:0]  RD2,        // input is 32 bits
+    input       [4:0]   Rt,         // input is 5 bits
+    input       [4:0]   Rs,         // input is 5 bits
+    input       [4:0]   Rd,         // input is 5 bits
+    input       [31:0]  SignImm,    // input is 32 bits
+    input       [31:0]  PCPlus4D,   // input is 32 bits
 
-    output  reg [31:0]  RD1E,
-    output  reg [31:0]  RD2E,
-    output  reg [4:0]   RtE,
-    output  reg [4:0]   RsE,
-    output  reg [4:0]   RdE,
-    output  reg [31:0]  SignImmE,
-    output  reg [31:0]  PCPlus4E,
+    output  reg [31:0]  RD1E,       // output is 32 bits
+    output  reg [31:0]  RD2E,       // output is 32 bits
+    output  reg [4:0]   RtE,        // output is 5 bits
+    output  reg [4:0]   RsE,        // output is 5 bits
+    output  reg [4:0]   RdE,        // output is 5 bits
+    output  reg [31:0]  SignImmE,   // output is 32 bits
+    output  reg [31:0]  PCPlus4E,   // output is 32 bits
 
     // Control Unit Input
     input               RegWriteD,
@@ -44,16 +44,19 @@ module ID_EX_Register(
     input               ALUSrcD,
 
     input               FlushE,
-    input       [2:0]   ALUControlD,
+    input       [2:0]   ALUControlD,    // input is 3 bits
+
     // WB 
     output  reg         RegWriteE,
     output  reg         MemtoRegE,
+
     // MEM
     output  reg         MemWriteE,
+
     // EX
     output  reg         RegDstE,
     output  reg         ALUSrcE,
-    output  reg [2:0]   ALUControlE
+    output  reg [2:0]   ALUControlE     // output is 3 bits
 );
 /*******************************************************************************
  *                                 Main Code

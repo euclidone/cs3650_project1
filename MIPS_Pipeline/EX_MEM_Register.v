@@ -16,27 +16,29 @@
 */
 module EX_MEM_Register(
     // System Clock
-    input        clk,
-    input        rst_n,
+    input        clk,                   // clock
+    input        rst_n,                 // reset
 
     // User Interface
-    input       [31:0]  ALUOut,
-    input       [31:0]  WriteDataE,
-    input       [4:0]   WriteRegE, 
+    input       [31:0]  ALUOut,         // input is 32 bits
+    input       [31:0]  WriteDataE,     // input is 32 bits
+    input       [4:0]   WriteRegE,      // input is 5 bits    
     input               Zero,
 
-    output  reg [31:0]  ALUOutM,
-    output  reg [31:0]  WriteDataM,
-    output  reg [4:0]   WriteRegM,
+    output  reg [31:0]  ALUOutM,        // output is 32 bits
+    output  reg [31:0]  WriteDataM,     // output is 32 bits
+    output  reg [4:0]   WriteRegM,      // output is 5 bits
     output  reg         ZeroM,
 
     // Control Unit Input
     input               RegWriteE,
     input               MemtoRegE,
     input               MemWriteE,
+
     // WB Signal
     output  reg         RegWriteM,
     output  reg         MemtoRegM,
+
     // MEM Signal
     output  reg         MemWriteM
 );

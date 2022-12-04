@@ -16,20 +16,20 @@
 */
 module Forward_Unit(
     // System Clock
-    input        rst_n,
+    input        rst_n,                 // reset
 
     // User Interface
-    input       [4:0]   RsE,
-    input       [4:0]   RtE,
-    input       [4:0]   RsD,
-    input       [4:0]   RtD,
-    input       [4:0]   WriteRegM,
-    input       [4:0]   WriteRegW,
+    input       [4:0]   RsE,            // input is 5 bits
+    input       [4:0]   RtE,            // input is 5 bits
+    input       [4:0]   RsD,            // input is 5 bits
+    input       [4:0]   RtD,            // input is 5 bits
+    input       [4:0]   WriteRegM,      // input is 5 bits
+    input       [4:0]   WriteRegW,      // input is 5 bits
     input               RegWriteM,
     input               RegWriteW,
 
-    output  reg [1:0]   ForwardAE,
-    output  reg [1:0]   ForwardBE,
+    output  reg [1:0]   ForwardAE,      // output is 2 bits
+    output  reg [1:0]   ForwardBE,      // output is 2 bits
     output  reg         ForwardAD,
     output  reg         ForwardBD
 );

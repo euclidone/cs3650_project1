@@ -16,31 +16,33 @@
 */
 module MIPS_Pipeline(
     // System Clock
-    input           clk,
-    input           rst_n
+    input           clk,        // clock
+    input           rst_n       // reset
 );
     // Control Unit Signal
     wire            RegWrite,RegWriteE,RegWriteM,RegWriteW;
     wire            MemtoReg,MemtoRegE,MemtoRegM,MemtoRegW;
     wire            MemWrite,MemWriteE,MemWriteM;
-    wire [2:0]      ALUControl,ALUControlE;
+    wire [2:0]      ALUControl,ALUControlE;                    // wire is 3 bits
     wire            BranchD,JumpD;
     wire            ALUSrc,ALUSrcE;
     wire            RegDst,RegDstE;
+
     // Harzard Control Unit Signal
     wire            FlushE,StallD,StalF;
     wire [1:0]      ForwardAE,ForwardBE;
     wire            ForwardAD,ForwardBD;
+
     // Pipeline Stage Signal
     wire            PCSrcD,ZeroM;
-    wire [1:0]      ALUOp,ALUOpE;
-    wire [4:0]      RtE,RdE,RsE;
-    wire [4:0]      WriteRegE,WriteRegM,WriteRegW;
-    wire [31:0]     PC,PCBranchD;
-    wire [31:0]     ALUOut,ALUOutM,ALUOutW,WriteDataM;
-    wire [31:0]     ReadDataW,ResultW,ReadDataM;
-    wire [31:0]     SignImm,SignImmE,RD1E,RD2E,SrcB_Forward;
-    wire [31:0]     Instr,InstrD,PCPlus4D,PCPlus4F,RD1,RD2;
+    wire [1:0]      ALUOp,ALUOpE;                               // wire is 2 bits
+    wire [4:0]      RtE,RdE,RsE;                                // wire is 5 bits
+    wire [4:0]      WriteRegE,WriteRegM,WriteRegW;              // wire is 5 bits
+    wire [31:0]     PC,PCBranchD;                               // wire is 32 bits
+    wire [31:0]     ALUOut,ALUOutM,ALUOutW,WriteDataM;          // wire is 32 bits
+    wire [31:0]     ReadDataW,ResultW,ReadDataM;                // wire is 32 bits
+    wire [31:0]     SignImm,SignImmE,RD1E,RD2E,SrcB_Forward;    // wire is 32 bits
+    wire [31:0]     Instr,InstrD,PCPlus4D,PCPlus4F,RD1,RD2;     // wire is 32 bits
 /*******************************************************************************
  *                                 Main Code
 *******************************************************************************/

@@ -17,9 +17,9 @@
 
 module Imm_Sign_Extend(
     // User Interface
-    input       [15:0]  Immediate,
+    input       [15:0]  Immediate, 	// input is 16 bits
 
-    output      [31:0]  SignImm
+    output      [31:0]  SignImm		// output is 32 bits
 );
     assign  SignImm = {{16{Immediate[15]}}, Immediate[15:0]};
 endmodule

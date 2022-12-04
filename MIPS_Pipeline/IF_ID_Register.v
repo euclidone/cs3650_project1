@@ -16,18 +16,19 @@
 */
 module IF_ID_Register(
     // System Clock
-    input        clk,
-    input        rst_n,
+    input        clk,               // clock
+    input        rst_n,             // reset
 
     input               StallD,
     input               PCSrcD,
     input               JumpD,
-    // User Interface
-    input       [31:0]  PCPlus4F,
-    input       [31:0]  Instr,
 
-    output  reg [31:0]  PCPlus4D,
-    output  reg [31:0]  InstrD
+    // User Interface
+    input       [31:0]  PCPlus4F,   // input is 32 bits
+    input       [31:0]  Instr,      // input is 32 bits
+
+    output  reg [31:0]  PCPlus4D,   // output is 32 bits
+    output  reg [31:0]  InstrD      // output is 32 bits
 );
 /*******************************************************************************
  *                                 Main Code

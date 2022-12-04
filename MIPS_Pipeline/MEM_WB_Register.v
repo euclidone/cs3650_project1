@@ -16,21 +16,22 @@
 */
 module MEM_WB_Register(
     // System Clock
-    input        clk,
-    input        rst_n,
+    input        clk,               // clock
+    input        rst_n,             // result
 
     // User Interface
-    input       [31:0]  ReadDataM,
-    input       [31:0]  ALUOutM,
-    input       [4:0]   WriteRegM, 
+    input       [31:0]  ReadDataM,  // input is 32 bits
+    input       [31:0]  ALUOutM,    // input is 32 bits
+    input       [4:0]   WriteRegM,  // input is 5 bits
 
-    output  reg [31:0]  ReadDataW,
-    output  reg [31:0]  ALUOutW,
-    output  reg [4:0]   WriteRegW,
+    output  reg [31:0]  ReadDataW,  // output is 32 bits
+    output  reg [31:0]  ALUOutW,    // output is 32 bits
+    output  reg [4:0]   WriteRegW,  // output is 5 bits
 
     // Control Signal 
     input               RegWriteM,
     input               MemtoRegM,
+
     // WB
     output  reg         RegWriteW,
     output  reg         MemtoRegW

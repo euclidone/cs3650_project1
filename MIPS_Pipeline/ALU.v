@@ -16,24 +16,25 @@
 */
 module ALU(
     // System Clock
-    input               rst_n,
+    input               rst_n,          // reset
+    
     // User Interface
-    input       [31:0]  SignImm,
-    input       [2:0]   ALUControl,
-    input               ALUSrc,
-    input       [1:0]   ForwardAE,
-    input       [1:0]   ForwardBE,
-    input       [31:0]  ResultW,
-    input       [31:0]  ALUOutM,
-    input       [31:0]  RD1E,
-    input       [31:0]  RD2E,
+    input       [31:0]  SignImm,        // input is 32 bits
+    input       [2:0]   ALUControl,     // input is 3 bits
+    input               ALUSrc,         
+    input       [1:0]   ForwardAE,      // input is 2 bits
+    input       [1:0]   ForwardBE,      // input is 2 bits
+    input       [31:0]  ResultW,        // input is 32 bits
+    input       [31:0]  ALUOutM,        // input is 32 bits
+    input       [31:0]  RD1E,           // input is 32 bits
+    input       [31:0]  RD2E,           // input is 32 bits
 
-    output  reg [31:0]  SrcB_Forward,
-    output  reg [31:0]  ALUOut,
+    output  reg [31:0]  SrcB_Forward,   // output is 32 bits
+    output  reg [31:0]  ALUOut,         // output is 32 bits
     output              Zero
 );
-    wire    [31:0] SrcB;
-    reg     [31:0] SrcA;
+    wire    [31:0] SrcB;            // wire is 32 bits
+    reg     [31:0] SrcA;            // register is 32 bits
 /*******************************************************************************
  *                                 Main Code
 *******************************************************************************/
@@ -67,9 +68,9 @@ module ALU(
             3'b110 : begin
                 ALUOut = SrcA - SrcB;
             end
-            3'b000 : ALUOut = SrcA & SrcB;
-            3'b001 : ALUOut = SrcA | SrcB;
-            3'b111 : ALUOut = (SrcA < SrcB) ? 32'b1 : 32'b0;
+            3'b000 : ALUOut = SrcA & SrcB;                      // AND
+            3'b001 : ALUOut = SrcA | SrcB;                      // OR
+            3'b111 : ALUOut = (SrcA < SrcB) ? 32'b1 : 32'b0;    // Set less than
             default: ;
         endcase
     end

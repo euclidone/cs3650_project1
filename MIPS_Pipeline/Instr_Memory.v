@@ -16,14 +16,14 @@
 */
 
 module Instr_Memory(
-    input   [31:0]  A,
-    output  [31:0]  RD
+    input   [31:0]  A,	// input is 32 bits
+    output  [31:0]  RD	// output is 32 bits
 );
 /*******************************************************************************
  *                                 Main Code
 *******************************************************************************/
 
-	reg [7:0] Instr_Reg [71:0];
+	reg [7:0] Instr_Reg [71:0];		// register is 8 bits
 	initial begin
 		$readmemh("./memfile.dat",Instr_Reg,0,71);
 	end

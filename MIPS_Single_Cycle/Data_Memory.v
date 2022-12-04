@@ -11,7 +11,7 @@ module Data_Memory(
     output   reg    [31:0]  RD  // 32 bits Read data
 );
     integer fd;
-    reg [31:0]  DATA_MEM[84:0];
+    reg [31:0]  DATA_MEM[84:0]; // register is 32 bits, DATA MEMORY is 85 bits
 
     always @(*) begin
             RD = DATA_MEM[A]; // Data being read from Address A
@@ -19,10 +19,9 @@ module Data_Memory(
 
 
     initial begin
-        fd = $fopen("./MEM_Data.txt", "w");  // fd is set to opening MEM_Data.txt and
-        // putting the mode to write
-        #500
-        $fclose(fd); // close
+        fd = $fopen("./MEM_Data.txt", "w");  // fd is set to opening MEM_Data.txt and putting the mode to write
+        #500                                 // wait 500 pico-seconds
+        $fclose(fd);                         // close
     end
 
     always @(posedge clk) begin // On positive clock edge

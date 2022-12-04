@@ -16,26 +16,26 @@
 */
 module Data_Memory(
     // System Clock
-    input        clk,
-    input        rst_n,
+    input        clk,               // clock
+    input        rst_n,             // reset
 
     // User Interface
-    input           [31:0]  A,
-    input           [31:0]  WD,
+    input           [31:0]  A,      // input is 32 bits
+    input           [31:0]  WD,     // input is 32 bits
     input                   WE,
 
-    output   reg    [31:0]  RD
+    output   reg    [31:0]  RD      // output is 32 bits
 );
     integer fd;
-    reg [31:0]  DATA_MEM[84:0];
+    reg [31:0]  DATA_MEM[84:0];     // register is 32 bits, DATA MEMORY is 85 bits
 /*******************************************************************************
  *                                 Main Code
 *******************************************************************************/
 
     initial begin
-        fd = $fopen("./MEM_Data.txt", "w");  
-        #500
-        $fclose(fd);
+        fd = $fopen("./MEM_Data.txt", "w"); // open MEM_Data.txt then write to it.
+        #500                                // delay by 500 pico-seconds
+        $fclose(fd);                        // close the opened file.
     end
 
     always @(*) begin

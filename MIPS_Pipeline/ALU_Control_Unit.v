@@ -19,9 +19,9 @@ module ALU_Control_Unit(
     // System Clock
 
     // User Interface
-    input       [5:0]   Funct,
-    input       [1:0]   ALUOp,
-    output  reg [2:0]   ALUControl
+    input       [5:0]   Funct,      // input is 6 bits
+    input       [1:0]   ALUOp,      // input is 2 bits
+    output  reg [2:0]   ALUControl  // output is 3 bits
 );
 /*******************************************************************************
  *                                 Main Code
@@ -31,7 +31,7 @@ module ALU_Control_Unit(
     always @(*) begin
         case (ALUOp)
             2'b00: ALUControl = 3'b010; // If the value of ALUOp is 0 in binary then set ALUControl to 2 in binary which equals subtraction
-            2'b10: begin // If it is 2 in binary then go into next switch statement based on passed function Func and determine the value
+            2'b10: begin                // If it is 2 in binary then go into next switch statement based on passed function Func and determine the value
                 case (Funct)
                     6'b100000 : ALUControl = 3'b010; // Subtract
                     6'b100010 : ALUControl = 3'b110; // OR
@@ -41,7 +41,7 @@ module ALU_Control_Unit(
                 endcase
             end
             2'b01: ALUControl = 3'b110; // If the value is 1, then set ALUControl to OR
-            default: ; // Default value does nothing 
+            default: ;                  // Default value does nothing 
         endcase
     end
 

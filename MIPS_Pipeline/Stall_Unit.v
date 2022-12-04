@@ -16,15 +16,15 @@
 */
 module Stall_Unit(
     // System Clock
-    input        clk,
-    input        rst_n,
+    input        clk,           // clock
+    input        rst_n,         // reset
 
     // User Interface
-    input   [4:0]   RsD,
-    input   [4:0]   RtD,
-    input   [4:0]   RtE,
-    input   [4:0]   WriteRegE,
-    input   [4:0]   WriteRegM,
+    input   [4:0]   RsD,        // input is 5 bits
+    input   [4:0]   RtD,        // input is 5 bits
+    input   [4:0]   RtE,        // input is 5 bits
+    input   [4:0]   WriteRegE,  // input is 5 bits
+    input   [4:0]   WriteRegM,  // input is 5 bits
     input           RegWriteE,
     input           MemtoRegE,
     input           MemtoRegM,

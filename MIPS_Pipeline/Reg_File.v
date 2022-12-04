@@ -18,19 +18,19 @@
 module Reg_File (
     input               clk,
     input               rst_n,
-    input       [4:0]   A1,
-    input       [4:0]   A2,
-    input       [4:0]   A3,
+    input       [4:0]   A1,         // input is 5 bits
+    input       [4:0]   A2,         // input is 5 bits
+    input       [4:0]   A3,         // input is 5 bits
 
     input               RegWrite,
-    input       [31:0]  WD3,
-    output      [31:0]  RD2,
-    output      [31:0]  RD1
+    input       [31:0]  WD3,        // input is 32 bits
+    output      [31:0]  RD2,        // output is 32 bits
+    output      [31:0]  RD1         // output is 32 bits
 
 );
     // lw : load word instr [op(6bit) rs(5bit) rd(5bit) imm(16bit)]
 
-    reg [31:0]  ROM [31:0];
+    reg [31:0]  ROM [31:0];     // register is 32 bits, ROM is 32 bits
     initial begin
         ROM[0] <= 32'b0;
         ROM[1] <= 32'b0;
