@@ -8,7 +8,7 @@ Long Nguyen
 
 
 ## [CS 3650] Project 1: Certified Preowned Processor
-
+https://docs.google.com/document/d/14NbGTFrBg8yicgkqpqA4v2oapyKQLkeV4qZMv2z0rwM/edit?usp=sharing 
 
 ## MIPS Single-cycle implementation
 Each component (memory, ALU, etc.) can be used only once.
