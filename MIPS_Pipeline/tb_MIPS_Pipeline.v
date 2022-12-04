@@ -46,8 +46,8 @@ initial begin
 end
 
 always @(negedge clk) begin
-    cnt <= cnt + 1'b1;
-    if (cnt >= 25) begin
+    cnt <= cnt + 1'b1;              // count =+ 1
+    if (cnt >= 25) begin            // if the count is greater or equal to 25 then stop
         $stop;
     end
 end
