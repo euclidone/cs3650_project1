@@ -33,24 +33,24 @@ module IF_ID_Register(
 /*******************************************************************************
  *                                 Main Code
 *******************************************************************************/
-
+    //seperating the fetch and decode stages
     always @(posedge clk ) begin
-        if (~rst_n) begin
-            PCPlus4D <= 32'b0;
-            InstrD <= 32'b0;
+        if (~rst_n) begin 
+            PCPlus4D <= 32'b0; //Assigning 32 bits of 0s
+            InstrD <= 32'b0; //Assigning 32 bits of 0s
         end
         else if (PCSrcD || JumpD) begin
-            InstrD <= 32'b0;
-            PCPlus4D <= 32'b0;
+            InstrD <= 32'b0; //Assigning 32 bits of 0s
+            PCPlus4D <= 32'b0; //Assigning 32 bits of 0s
         end
-        else if (StallD) begin
+        else if (StallD) begin //if StallID set
             PCPlus4D <= PCPlus4D;
             InstrD   <= InstrD;
         end
         else begin
             // total 64bits
-            PCPlus4D <= PCPlus4F;
-            InstrD   <= Instr;
+            PCPlus4D <= PCPlus4F;//combining two to be outputted together
+            InstrD   <= Instr;//combining two to be outputted together
         end
     end
 

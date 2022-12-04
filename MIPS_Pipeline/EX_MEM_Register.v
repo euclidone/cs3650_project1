@@ -45,7 +45,8 @@ module EX_MEM_Register(
 /*******************************************************************************
  *                                 Main Code
 *******************************************************************************/
-
+    
+    //seperating the execute and memory stages
     always @(posedge clk or negedge rst_n ) begin
         if(!rst_n)begin
             ZeroM       <= 1'b0;
@@ -55,15 +56,15 @@ module EX_MEM_Register(
         end
         else begin
             // 97 bits 
-            ALUOutM     <= ALUOut;
-            WriteDataM  <= WriteDataE;
-            WriteRegM   <= WriteRegE;
-            ZeroM       <= Zero;
+            ALUOutM     <= ALUOut; //combining two to be outputted together
+            WriteDataM  <= WriteDataE; //combining two to be outputted together
+            WriteRegM   <= WriteRegE; //combining two to be outputted together
+            ZeroM       <= Zero; //combining two to be outputted together
 
             // Control Unit Signal
-            RegWriteM   <= RegWriteE;
-            MemtoRegM   <= MemtoRegE;
-            MemWriteM   <= MemWriteE;
+            RegWriteM   <= RegWriteE; //combining two to be outputted together
+            MemtoRegM   <= MemtoRegE; //combining two to be outputted together 
+            MemWriteM   <= MemWriteE; //combining two to be outputted together
         end
     end
 

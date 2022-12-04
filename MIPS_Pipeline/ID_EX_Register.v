@@ -62,6 +62,7 @@ module ID_EX_Register(
  *                                 Main Code
 *******************************************************************************/
 
+    //seperating the decode and execute stages
     always @(posedge clk or negedge rst_n ) begin
         if(!rst_n)begin
             RegWriteE   <=  1'b0;
@@ -77,21 +78,21 @@ module ID_EX_Register(
         end
         else begin
             // total 128bits
-            RD1E        <= RD1;
-            RD2E        <= RD2;
-            RtE         <= Rt;
-            RsE         <= Rs;
-            RdE         <= Rd;
-            SignImmE    <= SignImm;
-            PCPlus4E    <= PCPlus4D;
+            RD1E        <= RD1;//combining two to be outputted together
+            RD2E        <= RD2;//combining two to be outputted together
+            RtE         <= Rt;//combining two to be outputted together
+            RsE         <= Rs;//combining two to be outputted together
+            RdE         <= Rd;//combining two to be outputted together
+            SignImmE    <= SignImm;//combining two to be outputted together
+            PCPlus4E    <= PCPlus4D;//combining two to be outputted together
 
             // Control Unit Signal
-            RegWriteE   <=  RegWriteD;
-            MemtoRegE   <=  MemtoRegD;
-            MemWriteE   <=  MemWriteD;
-            RegDstE     <=  RegDstD;
-            ALUSrcE     <=  ALUSrcD;
-            ALUControlE <=  ALUControlD;
+            RegWriteE   <=  RegWriteD;//combining two to be outputted together
+            MemtoRegE   <=  MemtoRegD;//combining two to be outputted together
+            MemWriteE   <=  MemWriteD;//combining two to be outputted together
+            RegDstE     <=  RegDstD;//combining two to be outputted together
+            ALUSrcE     <=  ALUSrcD;//combining two to be outputted together
+            ALUControlE <=  ALUControlD;//combining two to be outputted together
         end
     end
 

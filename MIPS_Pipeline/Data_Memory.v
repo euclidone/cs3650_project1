@@ -44,7 +44,7 @@ module Data_Memory(
 
     always @(posedge clk) begin
         if (WE) begin
-            DATA_MEM[A] <= WD; 
+            DATA_MEM[A] <= WD; //combining two to be outputted together
             $fdisplay(fd,"The Write Address A is %h", A);
             $fdisplay(fd,"DATA_MEM[A] is %h", WD);
         end

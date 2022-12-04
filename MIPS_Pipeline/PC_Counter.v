@@ -20,8 +20,8 @@ module PC_Counter(
     input        rst_n,                         // reset
 
     // User Interface
-    input                   PCSrcD,
-    input                   StallF,
+    input                   PCSrcD,             
+    input                   StallF, //flag is set when fetch needs to stall
     input           [31:0]  PCBranchD,          // input is 32 bits
     input                   JumpD,
     input           [25:0]  InstrD_Low25Bit,    // input is 26 bits
@@ -35,22 +35,22 @@ module PC_Counter(
  *                                 Main Code
 *******************************************************************************/
     
-    assign  PC_Next = PCSrcD ? PCBranchD : PCPlus4F;
-    assign  PC_Jump = {{PCPlus4F[31:28]},{InstrD_Low25Bit},{2'b00}};
+    assign  PC_Next = PCSrcD ? PCBranchD : PCPlus4F; //Getting the next PC value
+    assign  PC_Jump = {{PCPlus4F[31:28]},{InstrD_Low25Bit},{2'b00}};    //value for jumping
     assign  PCPlus4 = PC + 32'd4;                                       // PC + 4
     assign  PCPlus4F = PCPlus4;
-    assign  PC_Next_or_Jump = JumpD ? PC_Jump : PC_Next;
+    assign  PC_Next_or_Jump = JumpD ? PC_Jump : PC_Next; //Checking if next or jump
 
 
-    always @(posedge clk) begin
-        if(~rst_n)begin
-            PC <= 32'b0;
+    always @(posedge clk) begin //execute on positive edge
+        if(~rst_n)begin //execute if reset is negated
+            PC <= 32'b0; //assign PC a 32 bit of 0s 
         end
-        else if (StallF) begin
-            PC <= PC;
+        else if (StallF) begin //if fals is set
+            PC <= PC; //assign PC to itself
         end
         else 
-            PC <= PC_Next_or_Jump;
+            PC <= PC_Next_or_Jump; // else assign PC to jump or next
     end
 
 endmodule

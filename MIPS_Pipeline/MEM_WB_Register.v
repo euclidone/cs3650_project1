@@ -39,21 +39,23 @@ module MEM_WB_Register(
 /*******************************************************************************
  *                                 Main Code
 *******************************************************************************/
-
+    //Pipe m to w
     always @(posedge clk or negedge rst_n) begin
         if(!rst_n)begin
+            //resets all signals
             RegWriteW <= 1'b0;
             MemtoRegW <= 1'b0;
         end
         else begin
             // total 64bits
-            ReadDataW <= ReadDataM;
-            ALUOutW   <= ALUOutM;
-            WriteRegW <= WriteRegM;
+            //memory stage values
+            ReadDataW <= ReadDataM; //combining two to be outputted together
+            ALUOutW   <= ALUOutM; //combining two to be outputted together
+            WriteRegW <= WriteRegM; //combining two to be outputted together
 
-            // Control Unit
-            RegWriteW <= RegWriteM;
-            MemtoRegW <= MemtoRegM;
+            // Control Unit signale
+            RegWriteW <= RegWriteM; //combining two to be outputted together
+            MemtoRegW <= MemtoRegM; //combining two to be outputted together
         end
     end
 

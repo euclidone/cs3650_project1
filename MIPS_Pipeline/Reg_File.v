@@ -16,23 +16,23 @@
 */
 
 module Reg_File (
-    input               clk,
-    input               rst_n,
-    input       [4:0]   A1,         // input is 5 bits
-    input       [4:0]   A2,         // input is 5 bits
-    input       [4:0]   A3,         // input is 5 bits
+    input               clk, //clock
+    input               rst_n, //reset
+    input       [4:0]   A1,         // Address 1
+    input       [4:0]   A2,         // Address 2
+    input       [4:0]   A3,         // Address 3
 
-    input               RegWrite,
-    input       [31:0]  WD3,        // input is 32 bits
-    output      [31:0]  RD2,        // output is 32 bits
-    output      [31:0]  RD1         // output is 32 bits
+    input               RegWrite, //register written to
+    input       [31:0]  WD3,        // write date
+    output      [31:0]  RD2,        // read data 2
+    output      [31:0]  RD1         // read data 1
 
 );
     // lw : load word instr [op(6bit) rs(5bit) rd(5bit) imm(16bit)]
 
-    reg [31:0]  ROM [31:0];     // register is 32 bits, ROM is 32 bits
+    reg [31:0]  ROM [31:0]; // 32 ROMs of 32 bits each = 1024
     initial begin
-        ROM[0] <= 32'b0;
+        ROM[0] <= 32'b0; //Assignment 32 bits to ROMS 1 - 16
         ROM[1] <= 32'b0;
         ROM[2] <= 32'b0;
         ROM[3] <= 32'b0;
@@ -51,13 +51,13 @@ module Reg_File (
     end
 
 
-    assign RD1 = ROM[A1];
-    assign RD2 = ROM[A2];
+    assign RD1 = ROM[A1];//Assigning the ROM at index A1 to RD1
+    assign RD2 = ROM[A2];//Assigning the ROM at index A@ to RD2
     // RegWrite is set to 1 when lw Instr is executed
-    always @(negedge clk) begin
+    always @(negedge clk) begin //if clock has a negatuvwe edge
         if (RegWrite) begin
             // load word
-            ROM[A3] <= WD3;
+            ROM[A3] <= WD3;//Assigning WD# to the ROM at index A3
         end
     end
 endmodule

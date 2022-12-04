@@ -20,26 +20,29 @@ module Stall_Unit(
     input        rst_n,         // reset
 
     // User Interface
-    input   [4:0]   RsD,        // input is 5 bits
-    input   [4:0]   RtD,        // input is 5 bits
-    input   [4:0]   RtE,        // input is 5 bits
-    input   [4:0]   WriteRegE,  // input is 5 bits
-    input   [4:0]   WriteRegM,  // input is 5 bits
-    input           RegWriteE,
-    input           MemtoRegE,
-    input           MemtoRegM,
-    input           BranchD,
-    output  reg     FlushE,
-    output  reg     StallD,
-    output  reg     StallF
-);
-    wire lwstall,branchstall;
+    input   [4:0]   RsD,        // first source register from decode
+    input   [4:0]   RtD,        // second source register from decode
+    input   [4:0]   RtE,        // second source register from execute
+    input   [4:0]   WriteRegE,  // register written to determined by exec stage
+    input   [4:0]   WriteRegM,  // register written to determined by mem stage
+    input           RegWriteE,  // register written to determined by exec stage
+    input           MemtoRegE, //if data is written to from mem to exec by exec stage
+    input           MemtoRegM, //if data is written to from mem to exec by mem stage
+    input           BranchD, //if a branch instr, is executing
+    output  reg     FlushE, //flag is set when exec stage needs to be flushed
+    output  reg     StallD, //flag is set when decode needs to stall
+    output  reg     StallF //flag is set when fetch needs to stall
+);                              
+                             //stall while we wait for LW'w WB stage
+    wire lwstall,branchstall;//branch stall when a branch is taken
 /*******************************************************************************
  *                                 Main Code
 *******************************************************************************/
 
+    //set if branching and writing to a source reg
     assign branchstall = (BranchD && RegWriteE && ((WriteRegE == RsD) || (WriteRegE == RtD))) ||
                             (BranchD && MemtoRegM && ((WriteRegM == RsD) || (WriteRegM == RtD)));
+    //set whe writing from mem to reg
     assign lwstall = ((RsD == RtE) || (RtD == RtE)) && MemtoRegE;
     always @(*) begin
         if (~rst_n) begin
@@ -47,12 +50,12 @@ module Stall_Unit(
             StallD = 1'b0;     // IF/ID: keep last state data
             StallF = 1'b0;
         end
-        else if (lwstall || branchstall ) begin
+        else if (lwstall || branchstall ) begin //if lwstall or branchstall is set
             FlushE = 1'b1;     // ID/EX: Only need to Set MemWrite and RegWrite 0
             StallD = 1'b1;     // IF/ID: keep last state data
             StallF = 1'b1;     // PC:    keep last state data
         end 
-        else begin
+        else begin // all else set to 0 for output
             FlushE = 1'b0;     
             StallD = 1'b0;     
             StallF = 1'b0;

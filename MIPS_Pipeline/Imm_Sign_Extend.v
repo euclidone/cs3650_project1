@@ -21,5 +21,5 @@ module Imm_Sign_Extend(
 
     output      [31:0]  SignImm		// output is 32 bits
 );
-    assign  SignImm = {{16{Immediate[15]}}, Immediate[15:0]};
+    assign  SignImm = {{16{Immediate[15]}}, Immediate[15:0]}; // How it is sign extended
 endmodule

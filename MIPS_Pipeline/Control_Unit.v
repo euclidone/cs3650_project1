@@ -20,7 +20,7 @@ module Control_Unit(
 
     // User Interface
     output  reg [1:0]    ALUOp,         // output is 2 bits
-    output  reg     MemWrite,RegWrite,
+    output  reg     MemWrite,RegWrite, // 
     output  reg     RegDst,
     output  reg     MemtoReg,
     output  reg     ALUSrc,

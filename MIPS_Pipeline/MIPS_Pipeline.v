@@ -47,9 +47,10 @@ module MIPS_Pipeline(
  *                                 Main Code
 *******************************************************************************/
 
-    assign ResultW          = MemtoRegW ? ReadDataW : ALUOutW;
-    assign WriteRegE        = RegDstE ? RdE : RtE;
+    assign ResultW = MemtoRegW ? ReadDataW : ALUOutW;//Comparing to MemtoRegW if ReadDataW/ALUOutW = ResultW
+    assign WriteRegE = RegDstE ? RdE : RtE;//Comparing to RegSteE if RdE or RtE = WriteRegE
 
+    //Instantiations of all our modules
     PC_Counter u_PC_Counter(
         .clk(clk),
         .rst_n(rst_n),

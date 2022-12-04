@@ -39,7 +39,7 @@ module ALU(
  *                                 Main Code
 *******************************************************************************/
 
-    assign  SrcB = ALUSrc ? SignImm : SrcB_Forward;
+    assign  SrcB = ALUSrc ? SignImm : SrcB_Forward;//SrcB will be SignImm or SrcB_Forward
 
     always @(*) begin
         if (~rst_n) begin
@@ -47,12 +47,12 @@ module ALU(
             SrcB_Forward <= 32'b0;
         end
         else begin
-            case(ForwardAE)
-                2'b00: SrcA = RD1E;
+            case(ForwardAE) // if ForwardAE is set then SRC will be the follwoing
+                2'b00: SrcA = RD1E; 
                 2'b01: SrcA = ResultW;
                 2'b10: SrcA = ALUOutM;
             endcase 
-            case (ForwardBE)
+            case (ForwardBE) // if ForwardBE is set then SRC will be the following
                 2'b00: SrcB_Forward = RD2E;
                 2'b01: SrcB_Forward = ResultW;
                 2'b10: SrcB_Forward = ALUOutM;
@@ -61,12 +61,12 @@ module ALU(
     end
 
     always @(*) begin
-        case (ALUControl)
+        case (ALUControl) //Case depends on the ALUControl, wll execute various arithmetic and logic statments
             3'b010 : begin
-                ALUOut = SrcA + SrcB;
+                ALUOut = SrcA + SrcB; //add
             end 
             3'b110 : begin
-                ALUOut = SrcA - SrcB;
+                ALUOut = SrcA - SrcB; //sub
             end
             3'b000 : ALUOut = SrcA & SrcB;                      // AND
             3'b001 : ALUOut = SrcA | SrcB;                      // OR
@@ -75,6 +75,6 @@ module ALU(
         endcase
     end
 
-    assign Zero = (ALUOut) ? 1'b0 : 1'b1;
+    assign Zero = (ALUOut) ? 1'b0 : 1'b1;// will be 1 or 0
 
 endmodule
